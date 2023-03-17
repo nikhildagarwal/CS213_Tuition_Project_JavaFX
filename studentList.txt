@@ -1,0 +1,14 @@
+R,Jane,Doe,5/1/1996,CS,30
+R,John,Doe,1/2/2007,EE,20
+I,April,March,3/31/2000,BAIT,0,true
+I,Mary,Lindsey,12/1/2001,BAIT,89,false
+T,Duke,Ellington,2/29/2004,math,46,NY
+T,Roy,Brooks,8/8/1999,math,111,CT
+N,Roy,Brooks,9/9/1999,iti,100
+N,Kate,Lindsey,7/15/2002,ITI,59
+R,Carl,Brown,10/7/2004,cs,75
+R,Paul,Siegel,5/1/2000,CS,90
+I,Bill,Scanlan,5/1/1999,CS,120,false
+I,John,Doe,4/3/2003,CS,29,false
+T,John,Doe,12/20/2004,EE,45,NY
+N,John,Doe,1/20/2003,bait,60

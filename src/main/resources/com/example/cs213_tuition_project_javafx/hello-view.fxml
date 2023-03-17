@@ -10,6 +10,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,126 +23,173 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs213_tuition_project_javafx.TuitionManagerController">
     <top>
-        <TabPane prefHeight="342.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <TabPane prefHeight="675.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
             <tabs>
-                <Tab text="Roster" onSelectionChanged="#removeFirstTabText">
+                <Tab text="Roster">
                     <content>
-                        <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="800.0">
-                            <children>
-                                <GridPane maxHeight="-Infinity" prefHeight="300.0" prefWidth="550.0">
-                                    <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="125.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="99.0" minHeight="0.0" prefHeight="57.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                        <Label id="FirstName" prefHeight="17.0" prefWidth="91.0" text="     First Name:" />
-                                        <Label text="     Last Name:" GridPane.rowIndex="1" />
-                                        <Label text="     Date of Birth:" GridPane.rowIndex="2" />
+                          <GridPane maxHeight="-Infinity" prefHeight="546.0" prefWidth="800.0">
+                              <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="125.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="400.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                  <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="61.0" minHeight="7.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="70.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="71.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="117.0" minHeight="0.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="219.0" minHeight="0.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="395.0" minHeight="0.0" prefHeight="169.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                              <children>
+                                  <Label id="FirstName" prefHeight="17.0" prefWidth="91.0" text="     First Name:" />
+                                  <Label text="     Last Name:" GridPane.rowIndex="1" />
+                                  <Label text="     Date of Birth:" GridPane.rowIndex="2">
 
-                                        <Label text="" GridPane.rowIndex="8" GridPane.columnIndex="1" fx:id="firstTabText">
-                                 <GridPane.margin>
-                                    <Insets top="25.0" />
-                                 </GridPane.margin></Label>
-                                        <TextField GridPane.columnIndex="1" />
-                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                        <Label text="     Major:" GridPane.rowIndex="3" />
-                                        <Label text="     Credits Completed:" GridPane.rowIndex="4" />
-                                        <Label text="     Status:" GridPane.rowIndex="5" />
-                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                        <HBox prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                            <children>
-                                                <RadioButton mnemonicParsing="false" selected="true" text="BAIT">
-                                                    <toggleGroup>
-                                                        <ToggleGroup fx:id="majorGroup" />
-                                                    </toggleGroup>
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin></RadioButton>
-                                                <RadioButton mnemonicParsing="false" text="CS" toggleGroup="$majorGroup">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin></RadioButton>
-                                                <RadioButton mnemonicParsing="false" text="ECE" toggleGroup="$majorGroup">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin></RadioButton>
-                                                <RadioButton mnemonicParsing="false" text="ITI" toggleGroup="$majorGroup">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin></RadioButton>
-                                                <RadioButton mnemonicParsing="false" text="MATH" toggleGroup="$majorGroup" />
-                                            </children>
-                                 <GridPane.margin>
-                                    <Insets top="8.0" />
-                                 </GridPane.margin>
-                                        </HBox>
-                                        <RadioButton mnemonicParsing="false" selected="true" text="Resident" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                            <toggleGroup>
-                                                <ToggleGroup fx:id="ResidentGroup" />
-                                            </toggleGroup>
-                                 <GridPane.margin>
-                                    <Insets bottom="10.0" top="10.0" />
-                                 </GridPane.margin></RadioButton>
-                                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                            <children>
-                                                <RadioButton mnemonicParsing="false" text="Non-Resident" toggleGroup="$ResidentGroup">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin></RadioButton>
-                                                <VBox prefHeight="32.0" prefWidth="100.0">
-                                                    <children>
-                                                        <RadioButton disable="true" mnemonicParsing="false" prefHeight="3.0" prefWidth="78.0" text="Tri-State" toggleGroup="$ResidentGroup">
-                                             <padding>
-                                                <Insets bottom="3.0" />
-                                             </padding></RadioButton>
-                                                        <RadioButton disable="true" mnemonicParsing="false" text="International" toggleGroup="$ResidentGroup">
-                                             <padding>
-                                                <Insets bottom="3.0" />
-                                             </padding></RadioButton>
-                                          <RadioButton disable="true" mnemonicParsing="false" text="Neither">
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="ResidentGroup1" />
-                                             </toggleGroup>
-                                             <padding>
-                                                <Insets bottom="3.0" />
-                                             </padding>
-                                          </RadioButton>
-                                                    </children>
-                                                </VBox>
-                                                <VBox prefHeight="63.0" prefWidth="85.0" />
-                                            </children>
-                                 <GridPane.margin>
-                                    <Insets top="15.0" />
-                                 </GridPane.margin>
-                                        </HBox>
-                                        <HBox prefHeight="100.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                            <children>
-                                                <Button mnemonicParsing="false" onAction="#onAddButtonClick" text="Add" />
-                                                <Button mnemonicParsing="false" text="Delete" />
-                                                <Button mnemonicParsing="false" text="Change Major" />
-                                                <Button mnemonicParsing="false" text="Load From File" />
-                                            </children>
-                                 <GridPane.margin>
-                                    <Insets top="35.0" />
-                                 </GridPane.margin>
-                                        </HBox>
-                                    </children>
-                                </GridPane>
-                            </children>
-                            
-                        </AnchorPane>
+
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                                  <TextField fx:id="firstNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                  <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                  <DatePicker fx:id="dateField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                  <Label text="     Major:" GridPane.rowIndex="3" />
+                                  <Label text="     Credits Completed:" GridPane.rowIndex="4" />
+                                  <TextArea fx:id="firstTabText" prefHeight="260.0" prefWidth="300.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                  <Label text="     Status:" GridPane.rowIndex="5" />
+                                  <TextField fx:id="creditsTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                  <HBox prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                      <children>
+                                          <RadioButton mnemonicParsing="false" selected="true" text="BAIT">
+                                              <toggleGroup>
+                                                  <ToggleGroup fx:id="majorGroup" />
+                                              </toggleGroup>
+                                              <HBox.margin>
+                                                  <Insets right="10.0" />
+                                              </HBox.margin>
+                                        </RadioButton>
+                                          <RadioButton mnemonicParsing="false" text="CS" toggleGroup="$majorGroup">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                                          <RadioButton mnemonicParsing="false" text="EE" toggleGroup="$majorGroup">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                                          <RadioButton mnemonicParsing="false" text="ITI" toggleGroup="$majorGroup">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                                          <RadioButton mnemonicParsing="false" text="MATH" toggleGroup="$majorGroup" />
+                                      </children>
+                           <GridPane.margin>
+                              <Insets top="8.0" />
+                           </GridPane.margin>
+                                  </HBox>
+                                  <RadioButton mnemonicParsing="false" onAction="#switchToResident" selected="true" text="Resident" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                      <toggleGroup>
+                                          <ToggleGroup fx:id="ResidentGroupMain" />
+                                      </toggleGroup>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </RadioButton>
+                                  <HBox prefHeight="60.0" prefWidth="406.0" snapToPixel="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                      <children>
+                                          <RadioButton mnemonicParsing="false" onAction="#switchToNonResident" text="Non-Resident" toggleGroup="$ResidentGroupMain">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                                          <VBox prefHeight="60.0" prefWidth="95.0">
+                                 <children>
+                                     <RadioButton fx:id="tristateButton" disable="true" mnemonicParsing="false" onAction="#switchToTriState" prefHeight="3.0" prefWidth="78.0" text="Tri-State">
+
+                                                      <toggleGroup>
+                                                          <ToggleGroup fx:id="ResidentGroupSecondary" />
+                                                      </toggleGroup><padding>
+                                          <Insets bottom="3.0" />
+                                       </padding>
+                                     </RadioButton>
+                                     <RadioButton fx:id="internationalButton" disable="true" mnemonicParsing="false" onAction="#switchToInternational" prefHeight="20.0" prefWidth="94.0" text="International" toggleGroup="$ResidentGroupSecondary">
+                                       <padding>
+                                          <Insets bottom="3.0" />
+                                       </padding>
+                                    </RadioButton>
+                                    <RadioButton fx:id="neitherButton" disable="true" mnemonicParsing="false" onAction="#switchOffTriState" text="Neither" toggleGroup="$ResidentGroupSecondary">
+                                       <padding>
+                                          <Insets bottom="3.0" />
+                                       </padding>
+                                    </RadioButton>
+                                 </children>
+                              </VBox>
+                              <RadioButton disable="true" mnemonicParsing="false" prefHeight="23.0" prefWidth="46.0" text="CT">
+                                 <padding>
+                                    <Insets bottom="3.0" />
+                                 </padding>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="ResidentGroupTertiary" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton disable="true" mnemonicParsing="false" prefHeight="20.0" prefWidth="49.0" text="NY" toggleGroup="$ResidentGroupTertiary">
+                                 <padding>
+                                    <Insets bottom="3.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets top="2.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton disable="true" mnemonicParsing="false" prefHeight="23.0" prefWidth="103.0" text="Study Abroad">
+                                 <padding>
+                                    <Insets bottom="3.0" />
+                                 </padding>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="ResidentGroupQuad" />
+                                 </toggleGroup>
+                              </RadioButton>
+                                      </children>
+                           <GridPane.margin>
+                              <Insets top="15.0" />
+                           </GridPane.margin>
+                                  </HBox>
+                                  <HBox prefHeight="140.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                      <children>
+                                          <Button mnemonicParsing="false" onAction="#onAddButtonClick" text="Add" />
+                                          <Button mnemonicParsing="false" onAction="#onDeleteButtonClick" text="Delete" />
+                                          <Button mnemonicParsing="false" onAction="#onChangeButtonClick" text="Change Major" />
+                                          <Button mnemonicParsing="false" onAction="#onLoadFileButtonClick" text="Load From File" />
+                                      </children>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                                  </HBox>
+                        <Label prefHeight="163.0" prefWidth="80.0" text="     Console:" GridPane.rowIndex="9">
+                           <padding>
+                              <Insets bottom="150.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="17.0" prefWidth="72.0" text="     Text File:" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets top="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="textFileTextField" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets top="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                              </children>
+
+                          </GridPane>
+
                     </content>
                 </Tab>
                 <Tab text="Enroll/Drop">
