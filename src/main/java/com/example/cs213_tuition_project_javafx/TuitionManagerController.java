@@ -162,7 +162,7 @@ public class TuitionManagerController {
             if(creditsCompletedString.equals("")){
                 firstTabText.setText("Data Missing: Credits Completed is Empty!");
             }else{
-                firstTabText.setText("Credits Completed is not an integer");
+                firstTabText.setText("Credits Invalid: "+creditsCompletedString+" is not an integer");
             }
             return;
         }
@@ -183,19 +183,35 @@ public class TuitionManagerController {
         Major myMajor =grabMajor(major);
         if(typeMain.equals("Resident")){
             Resident resident = new Resident(profile,myMajor,creditsCompleted);
+            if(!resident.isValidStudent()){
+                firstTabText.setText("Credits Invalid: "+creditsCompletedString+" is negative");
+                return;
+            }
             processAdd(resident);
         }else{
             switch(typeSecondary){
                 case "Tri-State":
                     TriState triState = new TriState(profile,myMajor,creditsCompleted,typeTertiary);
+                    if(!triState.isValidStudent()){
+                        firstTabText.setText("Credits Invalid: "+creditsCompletedString+" is negative");
+                        return;
+                    }
                     processAdd(triState);
                     break;
                 case "International":
                     International international = new International(profile,myMajor,creditsCompleted,isStudyAbroad);
+                    if(!international.isValidStudent()){
+                        firstTabText.setText("Credits Invalid: "+creditsCompletedString+" is negative");
+                        return;
+                    }
                     processAdd(international);
                     break;
                 case "Neither":
                     NonResident nonResident = new NonResident(profile,myMajor,creditsCompleted);
+                    if(!nonResident.isValidStudent()){
+                        firstTabText.setText("Credits Invalid: "+creditsCompletedString+" is negative");
+                        return;
+                    }
                     processAdd(nonResident);
             }
         }
@@ -481,6 +497,67 @@ public class TuitionManagerController {
         }
     }
 
+    @FXML
+    public void onEnrollmentPrintClick(){
+        try{
+            String printOutput = enrollment.print();
+            if(printOutput.equals("")){
+                fourthTabText.setText("Enrollment is Empty!");
+                return;
+            }
+            printOutput = "** Enrollment **\n\n" + printOutput + "\n* End of Enrollment *";
+            fourthTabText.setText(printOutput);
+        }catch (Exception e){
+            fourthTabText.setText("Enrollment is Empty!");
+        }
+    }
+
+    @FXML
+    public void onTuitionDueClick(){
+        try{
+            String printOutput = enrollment.printTuition(roster);
+            if(printOutput.equals("")){
+                fourthTabText.setText("Enrollment is Empty!");
+                return;
+            }
+            printOutput = "** Tuition Due **\n\n" + printOutput + "\n* End of Tuition Due *";
+            fourthTabText.setText(printOutput);
+        }catch (Exception e){
+            fourthTabText.setText("Enrollment is Empty!");
+        }
+    }
+
+    @FXML
+    public void onSemesterEndClick(){
+        try{
+            if(enrollment.isEmpty()){
+                fourthTabText.setText("Enrollment is Empty!");
+                return;
+            }
+            processSemesterEnd();
+        }catch (Exception e){
+            fourthTabText.setText("Enrollment is Empty!");
+        }
+    }
+
+    /**
+     * Adds creditsEnrolled to credits completed and then prints the students that are eligible to graduate.
+     */
+    private void processSemesterEnd(){
+        String output = "";
+        roster.updateCreditsCompleted(enrollment);
+        output += "Credit completed has been updated.\n\n";
+        output += "** list of students eligible for graduation **\n\n";
+        String gradOutput = roster.printGraduated();
+        if(gradOutput.equals("")){
+            fourthTabText.setText("Credit completed has been updated.\n\nNo eligible students for graduation.");
+        }
+        output += gradOutput;
+        output += "\n* end of list *";
+        enrollment = new Enrollment();
+        fourthTabText.setText(output);
+    }
+
     private void clearFieldsScholarship(){
         SfirstName.setText("");
         SlastName.setText("");
@@ -491,12 +568,13 @@ public class TuitionManagerController {
     /**
      * Adds scholarship amount to student if they are enrolled, and they are eligible for a scholarship.
      * @param scholarship amount of scholarship we want to add to student.
-     * @param enrollStudent enrollStudent object that we want to search for in our enrollment.
+     * @param enrollStudentOriginal enrollStudent object that we want to search for in our enrollment.
      * @param student student object that we want ot add scholarship too. Student must be a resident.
      */
-    private void processScholarship(int scholarship , EnrollStudent enrollStudent, Student student){
+    private void processScholarship(int scholarship , EnrollStudent enrollStudentOriginal, Student student){
         if(roster.contains(student)){
-            Student temp = roster.getStudent(enrollStudent.getProfile());
+            Student temp = roster.getStudent(enrollStudentOriginal.getProfile());
+            EnrollStudent enrollStudent = enrollment.getEnrollStudent(enrollStudentOriginal);
             String type = temp.getType();
             if(!type.equals("(Resident)")){
                 thirdTabText.setText(enrollStudent.getProfile()+" "+type+" is not eligible for the scholarship.");
@@ -515,7 +593,7 @@ public class TuitionManagerController {
             thirdTabText.setText(enrollStudent.getProfile()+": scholarship amount updated.");
 
         }else{
-            thirdTabText.setText(enrollStudent.getProfile()+" is not in the roster.");
+            thirdTabText.setText(enrollStudentOriginal.getProfile()+" is not in the roster.");
         }
     }
 

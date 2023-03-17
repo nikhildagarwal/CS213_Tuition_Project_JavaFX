@@ -313,9 +313,9 @@
                                         </Menu>
                                         <Menu mnemonicParsing="false" text="Enrollment">
                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Print Enrolled Students" />
-                                                <MenuItem mnemonicParsing="false" text="Print Tuition Dues" />
-                                                <MenuItem mnemonicParsing="false" text="Semester End" />
+                                                <MenuItem mnemonicParsing="false" text="Print Enrolled Students" onAction="#onEnrollmentPrintClick"/>
+                                                <MenuItem mnemonicParsing="false" text="Print Tuition Dues" onAction="#onTuitionDueClick"/>
+                                                <MenuItem mnemonicParsing="false" text="Semester End" onAction="#onSemesterEndClick"/>
                                             </items>
                                         </Menu>
                                     </menus>

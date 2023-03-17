@@ -243,13 +243,16 @@ public class Roster {
 
     /**
      * Print Roster of students that have enough credits to graduate.
+     * @return String output of students that have graduated.
      */
-    public void printGraduated(){
+    public String printGraduated(){
+        String output = "";
         for(int i = 0;i<size;i++){
             if(roster[i].getcreditCompleted() >= GRADUATE_CREDITS){
-                System.out.println(roster[i]);
+                output += roster[i] + "\n";
             }
         }
+        return output;
     }
 
     /**

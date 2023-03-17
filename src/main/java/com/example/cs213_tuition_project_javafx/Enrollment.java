@@ -122,25 +122,42 @@ public class Enrollment {
 
     /**
      * prints the EnrollStudent array
+     * @return full output of our enrollment for this semester.
      */
-    public void print(){
+    public String print(){
+        String fullOutput = "";
         for(int i =0;i<size;i++){
-            System.out.println(enrollStudents[i]);
+            fullOutput += enrollStudents[i]+"\n";
         }
+        return fullOutput;
     }
 
     /**
      * Prints the EnrollStudent Array and each student corresponding tuition due.
      * @param roster Roster object to search and get student data.
+     * @return String output which is the full list of tuition due for students currently enrolled.
      */
-    public void printTuition(Roster roster){
+    public String printTuition(Roster roster){
+        String output = "";
         for(int i =0;i<size;i++){
             Profile profile = enrollStudents[i].getProfile();
             String type = roster.getStudent(profile).getType();
             Student student = roster.getStudent(profile);
             int creditsEnrolled = enrollStudents[i].getCreditsEnrolled();
-            System.out.println(profile+ " "+type+ " enrolled "+creditsEnrolled+" credits: tuition due: "+formatTuition(student.tuitionDue(creditsEnrolled)));
+            output += profile+ " "+type+ " enrolled "+creditsEnrolled+" credits: tuition due: "+formatTuition(student.tuitionDue(creditsEnrolled))+"\n";
         }
+        return output;
+    }
+
+    /**
+     * Method to check if enrollment is empty or not.
+     * @return boolean true if empty, false otherwise.
+     */
+    public boolean isEmpty(){
+        if(size == 0){
+            return true;
+        }
+        return false;
     }
 
     /**
