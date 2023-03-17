@@ -2,54 +2,153 @@ package com.example.cs213_tuition_project_javafx;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+/**
+ * Bridge class between JavaFX GUI and backend Java files.
+ * Controls all events on the GUI
+ * Controls all exception handling for GUI errors
+ * @author Nikhil Agarwal, Hyeon Oh
+ */
 public class TuitionManagerController {
 
+    /**
+     *Index of State String data in studentList.txt
+     */
     public static final int STATE_INDEX = 6;
+
+    /**
+     *Index of Abroad String data in studentList.txt
+     */
     public static final int ABROAD_INDEX = 6;
+
+    /**
+     *Index of code data in studentList.txt
+     */
     public static final int CODE_INDEX = 0;
+
+    /**
+     *Index of firstName String data in studentList.txt
+     */
     public static final int FIRSTNAME_INDEX = 1;
+
+    /**
+     *Index of lastName String data in studentList.txt
+     */
     public static final int LASTNAME_INDEX = 2;
+
+    /**
+     *Index of Date String data in studentList.txt
+     */
     public static final int DATE_INDEX = 3;
+
+    /**
+     *Index of Major String data in studentList.txt
+     */
     public static final int MAJOR_INDEX = 4;
+
+    /**
+     *Index of creditsCompleted String data in studentList.txt
+     */
     public static final int CREDITS_INDEX = 5;
 
+    /**
+     * Console TextArea for print Tab
+     */
     @FXML
     private TextArea fourthTabText;
+
+    /**
+     * Console TextArea for scholarship Tab
+     */
     @FXML
     private TextArea thirdTabText;
+
+    /**
+     * Console TextArea for Roster Tab
+     */
     @FXML
     private TextArea firstTabText;
+
+    /**
+     * Console TextArea for Enroll Tab
+     */
     @FXML
     private TextArea secondTabText;
+
+    /**
+     * Calendar interface for scholarship tab
+     */
     @FXML
     private DatePicker SdateBox;
+
+    /**
+     * Calendar interface for roster tab
+     */
     @FXML
     private DatePicker dateField;
+
+    /**
+     * Calendar interface for enroll tab
+     */
     @FXML
     private DatePicker EdateBox;
+
+    /**
+     * Text box for File name
+     */
     @FXML
     private TextField textFileTextField;
+
+    /**
+     * Text box for credits enrolled;
+     */
     @FXML
     private TextField creditsEnrolledBox;
+
+    /**
+     * Text Box for first Name on Roster tab
+     */
     @FXML
     private TextField firstNameTextField;
+
+    /**
+     * Text Box for last Name on Roster tab
+     */
     @FXML
     private TextField lastNameTextField;
+
+    /**
+     * Text Box for credits completed on Roster tab
+     */
     @FXML
     private TextField creditsTextField;
+
+    /**
+     * Text Box for first name on enroll tab
+     */
     @FXML
     private TextField EfirstNameBox;
+
+    /**
+     * Text Box for last name on enroll tab
+     */
     @FXML
     private TextField ElastNameBox;
+
+    /**
+     * Text Box for first name on scholarship tab
+     */
     @FXML
     private TextField SfirstName;
+
+    /**
+     * Text Box for last name on scholarship tab
+     */
     @FXML
     private TextField SlastName;
     @FXML
@@ -580,6 +679,7 @@ public class TuitionManagerController {
                 thirdTabText.setText(enrollStudent.getProfile()+" "+type+" is not eligible for the scholarship.");
                 return;
             }
+            try{ student.isResident(); }catch(Exception e){}
             if(scholarship<=0 || scholarship>10000){
                 thirdTabText.setText(scholarship+": invalid amount.");
                 return;

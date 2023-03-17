@@ -100,21 +100,6 @@ public class Roster {
     }
 
     /**
-     * Finds all the students in the roster from a specific school
-     * @param school school we are searching
-     * @return A roster object that contains all students from a specific school
-     */
-    public Roster addFromSchool(String school){
-        Roster schoolRoster = new Roster();
-        for(int i = 0;i<size;i++){
-            if(school.equals(roster[i].getSchool())){
-                schoolRoster.add(roster[i]);
-            }
-        }
-        return schoolRoster;
-    }
-
-    /**
      * Check to see if a particular student is in the roster.
      * If so, change the major of that student.
      * @param student student that we want to change the major of.

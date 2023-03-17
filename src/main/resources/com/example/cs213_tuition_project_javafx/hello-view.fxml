@@ -252,7 +252,7 @@
                                 <GridPane prefHeight="301.0" prefWidth="759.0">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="400.0" />
                                     </columnConstraints>
                                     <rowConstraints>
                                         <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
@@ -313,9 +313,9 @@
                                         </Menu>
                                         <Menu mnemonicParsing="false" text="Enrollment">
                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Print Enrolled Students" onAction="#onEnrollmentPrintClick"/>
-                                                <MenuItem mnemonicParsing="false" text="Print Tuition Dues" onAction="#onTuitionDueClick"/>
-                                                <MenuItem mnemonicParsing="false" text="Semester End" onAction="#onSemesterEndClick"/>
+                                                <MenuItem mnemonicParsing="false" onAction="#onEnrollmentPrintClick" text="Print Enrolled Students" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onTuitionDueClick" text="Print Tuition Dues" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onSemesterEndClick" text="Semester End" />
                                             </items>
                                         </Menu>
                                     </menus>

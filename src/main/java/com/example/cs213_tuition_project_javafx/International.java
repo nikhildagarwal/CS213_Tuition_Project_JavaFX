@@ -10,11 +10,24 @@ package com.example.cs213_tuition_project_javafx;
  * @author Nikhil Agarwal, Hyeon Oh
  */
 public class International extends NonResident{
-
+    /**
+     * boolean is studyAbroad data for international student
+     */
     public boolean isStudyAbroad;
 
+    /**
+     * The max credits an international student who is studying abroad can take
+     */
     public static final int MAX_STUDY_ABROAD_CREDITS = 12;
+
+    /**
+     * The min credits an international student who is studying abroad can take
+     */
     public static final int MIN_INTERNATIONAL_CREDITS_ENROLLED = 12;
+
+    /**
+     * Healthcare fee for international student
+     */
     public static final double HEALTHCARE_FEE = 2650;
 
     /**

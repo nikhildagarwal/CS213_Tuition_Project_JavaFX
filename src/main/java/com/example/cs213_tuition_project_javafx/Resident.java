@@ -40,6 +40,9 @@ public class Resident extends Student {
      */
     public static final double RESIDENT_TUITION = 12536;
 
+    /**
+     * int scholarship data for resident student.
+     */
     private int scholarship;
 
     /**
@@ -55,7 +58,7 @@ public class Resident extends Student {
     }
 
     /**
-     * Constructor of Resident Class without scholarship
+     * Constructor of Resident Class without scholarship, overloading
      * @param profile profile of the student
      * @param major major of the student
      * @param creditCompleted creditsCompleted by the student

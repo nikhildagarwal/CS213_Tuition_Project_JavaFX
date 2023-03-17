@@ -84,10 +84,6 @@ public abstract class Student implements Comparable<Student>{
         return student.profile.equals(profile);
     }
 
-    public String getSchool(){
-        return major.getSchool();
-    }
-
     /**
      * Override compareTo method from Java Comparable class.
      * Syntax: student1.compareTo(student2)
