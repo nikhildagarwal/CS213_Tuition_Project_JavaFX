@@ -1,22 +1,23 @@
 package com.example.cs213_tuition_project_javafx;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class TuitionManagerMain {
-    @FXML
-    private Label firstTabText;
+import java.io.IOException;
 
-    @FXML
-    public void onAddButtonClick(){
-        firstTabText.setText("Hi");
+public class TuitionManagerMain extends Application {
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(TuitionManagerMain.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+        stage.setTitle("Project 3 - Tuition_Project_JavaFX");
+        stage.setScene(scene);
+        stage.show();
     }
 
-    @FXML
-    public void removeFirstTabText(){
-        firstTabText.setText("");
+    public static void main(String[] args) {
+        launch();
     }
-
-
-
 }

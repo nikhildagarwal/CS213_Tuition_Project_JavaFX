@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.cs213_tuition_project_javafx/com.example.cs213_tuition_project_javafx.TuitionManagerController
+                                com.example.cs213_tuition_project_javafx/com.example.cs213_tuition_project_javafx.TuitionManagerMain
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
