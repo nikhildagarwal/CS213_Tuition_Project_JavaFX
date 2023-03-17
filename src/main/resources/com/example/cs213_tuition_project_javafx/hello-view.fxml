@@ -299,16 +299,16 @@
                                         <Menu mnemonicParsing="false" text="Roster">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" onAction="#onNormalPrintButtonClick" text="Print By Profile" />
-                                                <MenuItem mnemonicParsing="false" text="Print By School And Major" onAction="#onMajorPrintButtonClick"/>
-                                                <MenuItem mnemonicParsing="false" text="Print By Standing" onAction="#onStandingPrintButtonClick"/>
+                                                <MenuItem mnemonicParsing="false" onAction="#onMajorPrintButtonClick" text="Print By School And Major" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onStandingPrintButtonClick" text="Print By Standing" />
                                             </items>
                                         </Menu>
                                         <Menu mnemonicParsing="false" text="School/College">
                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="RBS" />
-                                                <MenuItem mnemonicParsing="false" text="SOE" />
-                                                <MenuItem mnemonicParsing="false" text="SC&amp;I" />
-                                                <MenuItem mnemonicParsing="false" text="SAS" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onRBSClick" text="RBS" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onSOEClick" text="SOE" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onSCIClick" text="SC&amp;I" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onSASCLick" text="SAS" />
                                             </items>
                                         </Menu>
                                         <Menu mnemonicParsing="false" text="Enrollment">
@@ -320,7 +320,7 @@
                                         </Menu>
                                     </menus>
                                 </MenuBar>
-                                <TextArea fx:id="fourthTabText" prefHeight="355.0" prefWidth="675.0" translateX="30.0" translateY="100.0" />
+                                <TextArea fx:id="fourthTabText" prefHeight="355.0" prefWidth="625.0" translateX="30.0" translateY="100.0" />
                                 <Label text="Console:" translateX="30.0" translateY="80.0" />
                             </children>
                         </AnchorPane>

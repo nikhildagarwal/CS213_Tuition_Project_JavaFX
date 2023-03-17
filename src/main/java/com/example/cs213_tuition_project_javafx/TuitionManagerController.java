@@ -413,6 +413,74 @@ public class TuitionManagerController {
         }
     }
 
+    @FXML
+    public void onRBSClick(){
+        if(roster.isEmpty()){
+            fourthTabText.setText("Roster is Empty! No students in any school.");
+            return;
+        }
+        Roster schoolRoster = new Roster();
+        roster.filterBySchool("RBS",schoolRoster);
+        try{
+            String printOutput = schoolRoster.print();
+            printOutput = "** Students in RBS **\n\n" + printOutput + "\n* End of List *";
+            fourthTabText.setText(printOutput);
+        }catch (Exception e){
+            fourthTabText.setText("No students in RBS!");
+        }
+    }
+
+    @FXML
+    public void onSOEClick(){
+        if(roster.isEmpty()){
+            fourthTabText.setText("Roster is Empty! No students in any school.");
+            return;
+        }
+        Roster schoolRoster = new Roster();
+        roster.filterBySchool("SOE",schoolRoster);
+        try{
+            String printOutput = schoolRoster.print();
+            printOutput = "** Students in SOE **\n\n" + printOutput + "\n* End of List *";
+            fourthTabText.setText(printOutput);
+        }catch (Exception e){
+            fourthTabText.setText("No students in SOE!");
+        }
+    }
+
+    @FXML
+    public void onSASCLick(){
+        if(roster.isEmpty()){
+            fourthTabText.setText("Roster is Empty! No students in any school.");
+            return;
+        }
+        Roster schoolRoster = new Roster();
+        roster.filterBySchool("SAS",schoolRoster);
+        try{
+            String printOutput = schoolRoster.print();
+            printOutput = "** Students in SAS **\n\n" + printOutput + "\n* End of List *";
+            fourthTabText.setText(printOutput);
+        }catch (Exception e){
+            fourthTabText.setText("No students in SAS!");
+        }
+    }
+
+    @FXML
+    public void onSCIClick(){
+        if(roster.isEmpty()){
+            fourthTabText.setText("Roster is Empty! No students in any school.");
+            return;
+        }
+        Roster schoolRoster = new Roster();
+        roster.filterBySchool("SC&I",schoolRoster);
+        try{
+            String printOutput = schoolRoster.print();
+            printOutput = "** Students in SC&I **\n\n" + printOutput + "\n* End of List *";
+            fourthTabText.setText(printOutput);
+        }catch (Exception e){
+            fourthTabText.setText("No students in SC&I!");
+        }
+    }
+
     private void clearFieldsScholarship(){
         SfirstName.setText("");
         SlastName.setText("");
