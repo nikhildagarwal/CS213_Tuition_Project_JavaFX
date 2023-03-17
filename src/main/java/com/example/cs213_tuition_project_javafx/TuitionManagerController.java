@@ -21,15 +21,19 @@ public class TuitionManagerController {
     public static final int CREDITS_INDEX = 5;
 
     @FXML
+    private TextArea thirdTabText;
+    @FXML
     private TextArea firstTabText;
     @FXML
     private TextArea secondTabText;
     @FXML
-    private TextField textFileTextField;
+    private DatePicker SdateBox;
     @FXML
     private DatePicker dateField;
     @FXML
     private DatePicker EdateBox;
+    @FXML
+    private TextField textFileTextField;
     @FXML
     private TextField creditsEnrolledBox;
     @FXML
@@ -42,6 +46,12 @@ public class TuitionManagerController {
     private TextField EfirstNameBox;
     @FXML
     private TextField ElastNameBox;
+    @FXML
+    private TextField SfirstName;
+    @FXML
+    private TextField SlastName;
+    @FXML
+    private TextField ScholarshipAmount;
     @FXML
     private ToggleGroup majorGroup;
     @FXML
@@ -328,6 +338,82 @@ public class TuitionManagerController {
         EnrollStudent enrollStudent = new EnrollStudent(profile,0);
         processDrop(enrollStudent);
         clearEnrollmentFields();
+    }
+
+    @FXML
+    public void onUpdateScholarshipButtonClick(){
+        String fName = SfirstName.getText();
+        if(fName.equals("")){
+            thirdTabText.setText("Data Missing: First Name is Empty!");
+            return;
+        }
+        String lName = SlastName.getText();
+        if(lName.equals("")){
+            thirdTabText.setText("Data Missing: Last Name is Empty!");
+            return;
+        }
+        String date = "Data Missing: No date selected!";
+        try{
+            date = getDateFromDatePicker(SdateBox);
+        }catch (Exception e){
+            thirdTabText.setText(date);
+            return;
+        }
+        String scholarshipString = ScholarshipAmount.getText();
+        int scholarship = 0;
+        try{
+            scholarship = Integer.parseInt(scholarshipString);
+        }catch (Exception e){
+            if(scholarshipString.equals("")){
+                thirdTabText.setText("Data Missing: Scholarship amount is Empty!");
+            }else{
+                thirdTabText.setText(scholarshipString +": Scholarship Amount is not an integer");
+            }
+            return;
+        }
+        Profile profile = new Profile(lName,fName,new Date(date));
+        EnrollStudent enrollStudent = new EnrollStudent(profile,0);
+        Resident resident = new Resident(profile,Major.CS,0);
+        processScholarship(scholarship,enrollStudent,resident);
+        clearFieldsScholarship();
+    }
+
+    private void clearFieldsScholarship(){
+        SfirstName.setText("");
+        SlastName.setText("");
+        SdateBox.setValue(null);
+        ScholarshipAmount.setText("");
+    }
+
+    /**
+     * Adds scholarship amount to student if they are enrolled, and they are eligible for a scholarship.
+     * @param scholarship amount of scholarship we want to add to student.
+     * @param enrollStudent enrollStudent object that we want to search for in our enrollment.
+     * @param student student object that we want ot add scholarship too. Student must be a resident.
+     */
+    private void processScholarship(int scholarship , EnrollStudent enrollStudent, Student student){
+        if(roster.contains(student)){
+            Student temp = roster.getStudent(enrollStudent.getProfile());
+            String type = temp.getType();
+            if(!type.equals("(Resident)")){
+                thirdTabText.setText(enrollStudent.getProfile()+" "+type+" is not eligible for the scholarship.");
+                return;
+            }
+            if(scholarship<=0 || scholarship>10000){
+                thirdTabText.setText(scholarship+": invalid amount.");
+                return;
+            }
+            if(enrollStudent.getCreditsEnrolled()<12){
+                thirdTabText.setText(enrollStudent.getProfile()+" part time student is not eligible for the scholarship.");
+                return;
+            }
+            Resident ourStudent = (Resident) temp;
+            ourStudent.setScholarship(scholarship);
+            thirdTabText.setText(enrollStudent.getProfile()+": scholarship amount updated.");
+
+        }else{
+            thirdTabText.setText(enrollStudent.getProfile()+" is not in the roster.");
+        }
     }
 
     /**

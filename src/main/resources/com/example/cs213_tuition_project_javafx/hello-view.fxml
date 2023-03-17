@@ -255,26 +255,36 @@
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="149.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="164.0" minHeight="10.0" prefHeight="161.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="149.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="175.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="164.0" minHeight="0.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="213.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
                                         <Label text="     First Name:" />
                                         <Label text="     Last Name:" GridPane.rowIndex="1" />
                                         <Label text="     Date of Birth:" GridPane.rowIndex="2" />
                                         <Label text="     Amount:" GridPane.rowIndex="3" />
-                                        <TextField GridPane.columnIndex="1" />
-                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <TextField prefHeight="25.0" prefWidth="645.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <TextField GridPane.columnIndex="1" fx:id="SfirstName"/>
+                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="SlastName"/>
+                                        <TextField prefHeight="25.0" prefWidth="645.0" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="ScholarshipAmount"/>
+                                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="SdateBox"/>
                                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                             <children>
-                                                <Button mnemonicParsing="false" text="Update Scholarship Amount" />
+                                                <Button mnemonicParsing="false" onAction="#onUpdateScholarshipButtonClick" text="Update Scholarship Amount">
+                                       <HBox.margin>
+                                          <Insets top="15.0" />
+                                       </HBox.margin></Button>
                                             </children>
                                         </HBox>
+                              <TextArea prefHeight="114.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="thirdTabText"/>
+                              <Label prefHeight="17.0" prefWidth="74.0" text="     Console:" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets bottom="100.0" />
+                                 </GridPane.margin>
+                              </Label>
                                     </children>
                                 </GridPane>
                             </children></AnchorPane>
