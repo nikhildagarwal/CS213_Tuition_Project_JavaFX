@@ -21,17 +21,27 @@ public class TuitionManagerController {
     public static final int CREDITS_INDEX = 5;
 
     @FXML
+    private TextArea firstTabText;
+    @FXML
+    private TextArea secondTabText;
+    @FXML
     private TextField textFileTextField;
     @FXML
-    private TextArea firstTabText;
+    private DatePicker dateField;
+    @FXML
+    private DatePicker EdateBox;
+    @FXML
+    private TextField creditsEnrolledBox;
     @FXML
     private TextField firstNameTextField;
     @FXML
     private TextField lastNameTextField;
     @FXML
-    private DatePicker dateField;
-    @FXML
     private TextField creditsTextField;
+    @FXML
+    private TextField EfirstNameBox;
+    @FXML
+    private TextField ElastNameBox;
     @FXML
     private ToggleGroup majorGroup;
     @FXML
@@ -42,6 +52,8 @@ public class TuitionManagerController {
     private ToggleGroup ResidentGroupTertiary;
     @FXML
     private ToggleGroup ResidentGroupQuad;
+
+    private Enrollment enrollment = new Enrollment();
     private Roster roster = new Roster();
 
     @FXML
@@ -176,8 +188,6 @@ public class TuitionManagerController {
             }
         }
         clearFields();
-        System.out.println("rosterPrint");
-        System.out.println(roster.print());
     }
 
     @FXML
@@ -214,6 +224,7 @@ public class TuitionManagerController {
         }
     }
 
+    @FXML
     public void onChangeButtonClick(){
         String fName = firstNameTextField.getText();
         if(fName.equals("")){
@@ -245,6 +256,7 @@ public class TuitionManagerController {
         clearFields();
     }
 
+    @FXML
     public void onLoadFileButtonClick(){
         String filename = textFileTextField.getText();
         if(filename.equals("")){
@@ -253,6 +265,107 @@ public class TuitionManagerController {
         }
         processLS(filename);
         clearFields();
+    }
+
+    @FXML
+    public void onEnrollButtonClick(){
+        String fName = EfirstNameBox.getText();
+        if(fName.equals("")){
+            secondTabText.setText("Data Missing: First Name is Empty!");
+            return;
+        }
+        String lName = ElastNameBox.getText();
+        if(lName.equals("")){
+            secondTabText.setText("Data Missing: Last Name is Empty!");
+            return;
+        }
+        String date = "Data Missing: No date selected!";
+        try{
+            date = getDateFromDatePicker(EdateBox);
+        }catch (Exception e){
+            secondTabText.setText(date);
+            return;
+        }
+        String creditsEnrolledString = creditsEnrolledBox.getText();
+        int creditsEnrolled = 0;
+        try{
+            creditsEnrolled = Integer.parseInt(creditsEnrolledString);
+        }catch (Exception e){
+            if(creditsEnrolledString.equals("")){
+                secondTabText.setText("Data Missing: Credits Completed is Empty!");
+            }else{
+                secondTabText.setText("Credits Enrolled is not an integer");
+            }
+            return;
+        }
+        Profile profile = new Profile(lName,fName,new Date(date));
+        EnrollStudent enrollStudent = new EnrollStudent(profile,creditsEnrolled);
+        Resident resident = new Resident(profile,Major.CS,0);
+        processEnroll(enrollStudent,resident,creditsEnrolled);
+        clearEnrollmentFields();
+    }
+
+    @FXML
+    public void onDropButtonClick(){
+        String fName = EfirstNameBox.getText();
+        if(fName.equals("")){
+            secondTabText.setText("Data Missing: First Name is Empty!");
+            return;
+        }
+        String lName = ElastNameBox.getText();
+        if(lName.equals("")){
+            secondTabText.setText("Data Missing: Last Name is Empty!");
+            return;
+        }
+        String date = "Data Missing: No date selected!";
+        try{
+            date = getDateFromDatePicker(EdateBox);
+        }catch (Exception e){
+            secondTabText.setText(date);
+            return;
+        }
+        Profile profile = new Profile(lName,fName,new Date(date));
+        EnrollStudent enrollStudent = new EnrollStudent(profile,0);
+        processDrop(enrollStudent);
+        clearEnrollmentFields();
+    }
+
+    /**
+     * Drops a student from enrollment.
+     * @param enrollStudent enrollstudent object to remove student from enrollment.
+     */
+    private void processDrop(EnrollStudent enrollStudent){
+        if(!enrollment.contains(enrollStudent)){
+            secondTabText.setText(enrollStudent.getProfile()+" is not enrolled.");
+            return;
+        }
+        enrollment.remove(enrollStudent);
+        secondTabText.setText(enrollStudent.getProfile()+" dropped.");
+    }
+
+    /**
+     * Enrolls a student if All the data that is provided in the input command line is valid.
+     * Also checks to see if roster contains student we are trying to enroll. If not the method will terminate.
+     * @param enrollStudent enrollStudent object
+     * @param student Student object that corresponds to same student that is enrolling
+     * @param creditsEnrolled number of credits student is going to take this semester
+     */
+    private void processEnroll(EnrollStudent enrollStudent, Student student, int creditsEnrolled){
+        if(!roster.contains(student)){
+            secondTabText.setText("Cannot enroll: "+ student.getProfile() +" is not in the roster.");
+            return;
+        }
+        if(roster.getStudent(student.getProfile()).isValid(creditsEnrolled)){
+            if(enrollment.contains(enrollStudent)){
+                enrollment.getEnrollStudent(enrollStudent).changeCredits(creditsEnrolled);
+                secondTabText.setText(student.getProfile() + " enrolled "+creditsEnrolled+" credits");
+            }else{
+                enrollment.add(enrollStudent);
+                secondTabText.setText(student.getProfile() + " enrolled "+creditsEnrolled+" credits");
+            }
+        }else{
+            secondTabText.setText(roster.getStudent(student.getProfile()).getType()+" "+creditsEnrolled+": invalid credit hours.");
+        }
     }
 
     private void processChange(Student student, Major newMajor){
@@ -292,6 +405,13 @@ public class TuitionManagerController {
         dateField.setValue(null);
         creditsTextField.setText("");
         textFileTextField.setText("");
+    }
+
+    private void clearEnrollmentFields(){
+        EfirstNameBox.setText("");
+        ElastNameBox.setText("");
+        EdateBox.setValue(null);
+        creditsEnrolledBox.setText("");
     }
 
     private String getDateFromDatePicker(DatePicker dateField){

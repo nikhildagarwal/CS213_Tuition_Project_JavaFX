@@ -196,41 +196,51 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <GridPane prefHeight="250.0" prefWidth="527.0">
+                                <GridPane prefHeight="266.0" prefWidth="527.0">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="400.0" />
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="38.0" minHeight="8.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="47.0" minHeight="3.0" prefHeight="47.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="49.0" minHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="55.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="132.0" minHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="137.0" minHeight="0.0" prefHeight="96.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="200.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES" />
                                         <RowConstraints />
                                         <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
                                         <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+                              <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+                              <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
                                     </rowConstraints>
                                     <children>
                                         <Label text="     First Name:" />
                                         <Label text="     Last Name:" GridPane.rowIndex="1" />
                                         <Label text="     Date of Birth:" GridPane.rowIndex="2" />
                                         <Label text="     Credits:" GridPane.rowIndex="3" />
-                                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="4">
+                                        <HBox prefHeight="134.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="4">
                                             <children>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                <HBox maxHeight="-Infinity" prefHeight="35.0" prefWidth="200.0">
                                                     <children>
-                                                        <Button mnemonicParsing="false" text="Enroll" />
-                                                        <Button mnemonicParsing="false" text="Drop" />
+                                                        <Button mnemonicParsing="false" onAction="#onEnrollButtonClick" text="Enroll" />
+                                                        <Button mnemonicParsing="false" onAction="#onDropButtonClick" text="Drop" />
                                                     </children>
                                                 </HBox>
-                                            </children></HBox>
-                                        <TextField GridPane.columnIndex="1" />
-                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                            </children>
+                              </HBox>
+                                        <TextField fx:id="EfirstNameBox" GridPane.columnIndex="1" />
+                                        <TextField fx:id="ElastNameBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <DatePicker fx:id="EdateBox" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <TextField fx:id="creditsEnrolledBox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="     Console:" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets bottom="95.0" />
+                                 </GridPane.margin>
+                              </Label>
                                     </children>
                                 </GridPane>
+                        <TextArea fx:id="secondTabText" layoutX="102.0" layoutY="195.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="165.0" prefWidth="400.0" />
                             </children>
                         </AnchorPane>
                     </content>
