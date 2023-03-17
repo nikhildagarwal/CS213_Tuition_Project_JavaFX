@@ -21,6 +21,8 @@ public class TuitionManagerController {
     public static final int CREDITS_INDEX = 5;
 
     @FXML
+    private TextArea fourthTabText;
+    @FXML
     private TextArea thirdTabText;
     @FXML
     private TextArea firstTabText;
@@ -376,6 +378,39 @@ public class TuitionManagerController {
         Resident resident = new Resident(profile,Major.CS,0);
         processScholarship(scholarship,enrollStudent,resident);
         clearFieldsScholarship();
+    }
+
+    @FXML
+    public void onNormalPrintButtonClick(){
+        try{
+            String printOutput = roster.print();
+            printOutput = "** Student roster sorted by last name, first name, DOB **\n\n" + printOutput + "\n* End of Roster *";
+            fourthTabText.setText(printOutput);
+        }catch (Exception e){
+            fourthTabText.setText("Roster is Empty!");
+        }
+    }
+
+    @FXML
+    public void onMajorPrintButtonClick(){
+        try{
+            String printOutput = roster.printByMajor();
+            printOutput = "** Student roster sorted by school, major **\n\n"+printOutput+"\n* End of Roster *";
+            fourthTabText.setText(printOutput);
+        }catch (Exception e){
+            fourthTabText.setText("Roster is Empty!");
+        }
+    }
+
+    @FXML
+    public void onStandingPrintButtonClick(){
+        try{
+            String printOutput = roster.printByStanding();
+            printOutput = "** Student roster sorted by standing **\n\n"+printOutput+"\n* End of Roster *";
+            fourthTabText.setText(printOutput);
+        }catch (Exception e){
+            fourthTabText.setText("Roster is Empty!");
+        }
     }
 
     private void clearFieldsScholarship(){

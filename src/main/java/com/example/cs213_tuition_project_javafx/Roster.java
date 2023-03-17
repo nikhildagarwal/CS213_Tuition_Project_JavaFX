@@ -175,6 +175,7 @@ public class Roster {
 
     /**
      * Prints the sorted roster (sorted by last name, first name, DOB).
+     * @return String of full output.
      */
     public String print(){
         String fullRoster = "";
@@ -209,12 +210,15 @@ public class Roster {
 
     /**
      * Prints the sorted roster (sorted by major, school).
+     * @return String of full roster output.
      */
-    public void printByMajor(){
+    public String printByMajor(){
+        String fullOutput = "";
         rosterMajorSort(roster);
         for(int i = 0; i < size; i++){
-            System.out.println(roster[i]);
+            fullOutput+= roster[i]+"\n";
         }
+        return fullOutput;
     }
 
     /**
@@ -286,12 +290,15 @@ public class Roster {
 
     /**
      * Prints the sorted roster (sorted by standing).
+     * @return full output of our roster sorted by standing.
      */
-    public void printByStanding(){
+    public String printByStanding(){
+        String fullOutput = "";
         rosterStandingSort(roster);
         for(int i = 0; i < size; i++){
-            System.out.println(roster[i]);
+            fullOutput += roster[i]+"\n";
         }
+        return fullOutput;
     }
 
     /**

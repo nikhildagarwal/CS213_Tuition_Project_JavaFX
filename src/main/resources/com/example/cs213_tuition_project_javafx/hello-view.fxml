@@ -267,10 +267,10 @@
                                         <Label text="     Last Name:" GridPane.rowIndex="1" />
                                         <Label text="     Date of Birth:" GridPane.rowIndex="2" />
                                         <Label text="     Amount:" GridPane.rowIndex="3" />
-                                        <TextField GridPane.columnIndex="1" fx:id="SfirstName"/>
-                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="SlastName"/>
-                                        <TextField prefHeight="25.0" prefWidth="645.0" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="ScholarshipAmount"/>
-                                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="SdateBox"/>
+                                        <TextField fx:id="SfirstName" GridPane.columnIndex="1" />
+                                        <TextField fx:id="SlastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <TextField fx:id="ScholarshipAmount" prefHeight="25.0" prefWidth="645.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <DatePicker fx:id="SdateBox" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                             <children>
                                                 <Button mnemonicParsing="false" onAction="#onUpdateScholarshipButtonClick" text="Update Scholarship Amount">
@@ -279,7 +279,7 @@
                                        </HBox.margin></Button>
                                             </children>
                                         </HBox>
-                              <TextArea prefHeight="114.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="thirdTabText"/>
+                              <TextArea fx:id="thirdTabText" prefHeight="114.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                               <Label prefHeight="17.0" prefWidth="74.0" text="     Console:" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets bottom="100.0" />
@@ -294,13 +294,13 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <MenuBar>
+                                <MenuBar translateX="30.0" translateY="30.0">
                                     <menus>
                                         <Menu mnemonicParsing="false" text="Roster">
                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Print By Profile" />
-                                                <MenuItem mnemonicParsing="false" text="Print By School And Major" />
-                                                <MenuItem mnemonicParsing="false" text="Print By Standing" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onNormalPrintButtonClick" text="Print By Profile" />
+                                                <MenuItem mnemonicParsing="false" text="Print By School And Major" onAction="#onMajorPrintButtonClick"/>
+                                                <MenuItem mnemonicParsing="false" text="Print By Standing" onAction="#onStandingPrintButtonClick"/>
                                             </items>
                                         </Menu>
                                         <Menu mnemonicParsing="false" text="School/College">
@@ -320,7 +320,10 @@
                                         </Menu>
                                     </menus>
                                 </MenuBar>
-                            </children></AnchorPane>
+                                <TextArea fx:id="fourthTabText" prefHeight="355.0" prefWidth="675.0" translateX="30.0" translateY="100.0" />
+                                <Label text="Console:" translateX="30.0" translateY="80.0" />
+                            </children>
+                        </AnchorPane>
                     </content>
                 </Tab>
             </tabs>
