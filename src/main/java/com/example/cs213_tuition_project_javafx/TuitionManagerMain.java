@@ -5,10 +5,18 @@ import javafx.scene.control.Label;
 
 public class TuitionManagerMain {
     @FXML
-    private Label welcomeText;
+    private Label firstTabText;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public void onAddButtonClick(){
+        firstTabText.setText("Hi");
     }
+
+    @FXML
+    public void removeFirstTabText(){
+        firstTabText.setText("");
+    }
+
+
+
 }
