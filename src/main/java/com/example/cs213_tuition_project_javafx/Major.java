@@ -12,13 +12,30 @@ import java.util.StringTokenizer;
  * @author Nikhil Agarwal, Hyeon Oh
  */
 public enum Major {
+
     /**
-     * Enums of this class
+     * Computer Science enum object
      */
     CS("01:198","SAS"),
+
+    /**
+     * Math enum object
+     */
     MATH("01:640","SAS"),
+
+    /**
+     * Electrical Engineering enum object
+     */
     EE("14:332","SOE"),
+
+    /**
+     * Information Technology and Informatics enum object
+     */
     ITI("04:547","SC&I"),
+
+    /**
+     * Business Analytics and Information Technology enum object
+     */
     BAIT("33:136","RBS");
 
     /**
@@ -60,7 +77,7 @@ public enum Major {
     /**
      * Checks to see if a string school, is a valid school @ Rutgers.
      * @param school school that we want to check.
-     * @return true if school is one of the following (SAS, SOE, SC&I, RBS), false otherwise.
+     * @return true if school is one of the following (SAS, SOE, SC and I, RBS), false otherwise.
      */
     public boolean isValidSchool(String school){
         school.toUpperCase();

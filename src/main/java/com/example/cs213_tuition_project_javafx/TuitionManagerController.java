@@ -199,6 +199,12 @@ public class TuitionManagerController {
     private Roster roster = new Roster();
 
     /**
+     * Creates instance of class (NOT USED);
+     */
+    public TuitionManagerController(){}
+
+
+    /**
      * Turns on the CT, NY toggle buttons when Tri-State button has been selected.
      */
     @FXML
@@ -683,7 +689,7 @@ public class TuitionManagerController {
 
     /**
      * Event handler function to print student currently in the roster,
-     * that all attend SC&I (School of Communication and Information)
+     * that all attend SC and I (School of Communication and Information)
      * Displays output in console on print tab.
      */
     @FXML

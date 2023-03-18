@@ -98,7 +98,7 @@ public abstract class Student implements Comparable<Student>{
     /**
      * Abstract method to check if student is a resident
      * Must be implemented in extender class (Override)
-     * @return
+     * @return true if Student is a resident
      */
     public abstract boolean isResident();
 
@@ -115,17 +115,17 @@ public abstract class Student implements Comparable<Student>{
      * Abstract method to get the type of Student
      * Basically check to see which subclass of student a student object is.
      * Must override.
-     * @return
+     * @return String type of Student (Ex: Resident, Tri-State, etc)
      */
     public abstract String getType();
 
     /**
      * Checks to see if Student is valid to be enrolled this semester.
      * @param creditEnrolled The number of credits student is wants to take this semester
-     * @return true if 3<=credits<=24, false otherwise.
+     * @return true if credits is between 3 and 24, false otherwise.
      */
     public boolean isValid(int creditEnrolled){
-        if(creditEnrolled>=MIN_CREDITS_ENROLLED && creditEnrolled<=MAX_CREDITS_ENROLLED){
+        if(creditEnrolled >= MIN_CREDITS_ENROLLED && creditEnrolled <= MAX_CREDITS_ENROLLED){
             return true;
         }
         return false;
@@ -142,10 +142,10 @@ public abstract class Student implements Comparable<Student>{
     /**
      * Checks how many credits a student has completed and returns the standing of the student.
      * @param creditCompleted number of credits student has completed.
-     * @return Freshman if creditsCompleted<30,
-     *         Sophomore if 30<=creditsCompleted<60,
-     *         Junior if 60<=creditsCompleted<90,
-     *         Senior if creditsCompleted>=90
+     * @return Freshman if creditsCompleted is less than 30,
+     *         Sophomore if credits completed is between 30 and 60,
+     *         Junior if credits completed is between 60 and 90,
+     *         Senior if credits completed is greater than 90
      */
     public String getStanding(int creditCompleted){
         if(creditCompleted<SOPHOMORE){
@@ -168,23 +168,26 @@ public abstract class Student implements Comparable<Student>{
     }
 
     /**
-     * @return Profile of our student (last name, first name, DoB)
+     * Method to get profile of student object
+     * @return Profile object
      */
     public Profile getProfile(){
         return profile;
     }
 
     /**
-     * @return Major of the student.
+     * Method to get major of student object
+     * @return Major object
      */
     public Major getMajor(){
         return major;
     }
 
     /**
-     * @return return number of Credits that the student has completed.
+     * Method to return credits Completed of student object
+     * @return int creditsCompleted
      */
-    public int getcreditCompleted(){
+    public int getCreditCompleted(){
         return creditCompleted;
     }
 

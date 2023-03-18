@@ -15,6 +15,11 @@ import java.io.IOException;
 public class TuitionManagerMain extends Application {
 
     /**
+     * Creates instance of class (NOT USED)
+     */
+    public TuitionManagerMain(){}
+
+    /**
      * Bridge method between java backend and JavaFX front end.
      * Specifies display Name for app and FXML file for structure of application.
      * @param stage Stage object that our app will be displayed on

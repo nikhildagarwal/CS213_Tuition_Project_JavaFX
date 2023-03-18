@@ -220,7 +220,7 @@ public class Roster {
             EnrollStudent enrollStudent = enrollment.getEnrollStudentFromProfile(profile);
             if(enrollStudent!=null){
                 int creditsToAdd = enrollStudent.getCreditsEnrolled();
-                int creditsPreviouslyCompleted = student.getcreditCompleted();
+                int creditsPreviouslyCompleted = student.getCreditCompleted();
                 roster[i].changeCreditCompleted(creditsToAdd + creditsPreviouslyCompleted);
             }
         }
@@ -233,7 +233,7 @@ public class Roster {
     public String printGraduated(){
         String output = "";
         for(int i = 0;i<size;i++){
-            if(roster[i].getcreditCompleted() >= GRADUATE_CREDITS){
+            if(roster[i].getCreditCompleted() >= GRADUATE_CREDITS){
                 output += roster[i] + "\n";
             }
         }
@@ -297,8 +297,8 @@ public class Roster {
     private void rosterStandingSort(Student[] roster){
         int[] compareables = new int[size-1];
         for(int i = 0; i < size - 1; i++){
-            String grade1 = roster[i].getStanding(roster[i].getcreditCompleted());
-            String grade2 = roster[i+1].getStanding(roster[i+1].getcreditCompleted());
+            String grade1 = roster[i].getStanding(roster[i].getCreditCompleted());
+            String grade2 = roster[i+1].getStanding(roster[i+1].getCreditCompleted());
             compareables[i] = grade1.compareTo(grade2);
         }
         while(containsPositive(compareables)) {
@@ -308,8 +308,8 @@ public class Roster {
                 }
             }
             for(int i = 0; i<compareables.length; i++){
-                String major1 = roster[i].getStanding(roster[i].getcreditCompleted());
-                String major2 = roster[i+1].getStanding(roster[i+1].getcreditCompleted());
+                String major1 = roster[i].getStanding(roster[i].getCreditCompleted());
+                String major2 = roster[i+1].getStanding(roster[i+1].getCreditCompleted());
                 compareables[i] = major1.compareTo(major2);
             }
         }

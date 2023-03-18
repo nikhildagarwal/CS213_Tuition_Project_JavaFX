@@ -39,21 +39,24 @@ public class Profile implements Comparable<Profile>{
     }
 
     /**
-     * @return Gets last name of Profile Object.
+     * Getter Method for last Name of profile object
+     * @return String lastName
      */
     public String getLastName(){
         return lname;
     }
 
     /**
-     * @return Gets first name of Profile Object.
+     * Getter Method for firstName of profile object
+     * @return String firstName
      */
     public String getFirstName(){
         return fname;
     }
 
     /**
-     * @return Gets date of Profile Object.
+     * Getter Method for date of profile object
+     * @return Date object
      */
     public Date getDate(){
         return dob;
