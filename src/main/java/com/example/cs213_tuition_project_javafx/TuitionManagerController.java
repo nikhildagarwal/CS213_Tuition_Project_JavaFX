@@ -151,22 +151,56 @@ public class TuitionManagerController {
      */
     @FXML
     private TextField SlastName;
+
+    /**
+     * Text Box for scholarship amount
+     */
     @FXML
     private TextField ScholarshipAmount;
+
+    /**
+     * Toggle buttons for majors EE, CS, BAIT, ITI, MATH
+     */
     @FXML
     private ToggleGroup majorGroup;
+
+    /**
+     * Toggle buttons for Resident, Non-Resident
+     */
     @FXML
     private ToggleGroup ResidentGroupMain;
+
+    /**
+     * Toggle buttons for TriState, International, Neither
+     */
     @FXML
     private ToggleGroup ResidentGroupSecondary;
+
+    /**
+     * Toggle buttons for CT, NY
+     */
     @FXML
     private ToggleGroup ResidentGroupTertiary;
+
+    /**
+     * Toggle button for isStudyAbroad
+     */
     @FXML
     private ToggleGroup ResidentGroupQuad;
 
+    /**
+     * Enrollment Object for GUI project
+     */
     private Enrollment enrollment = new Enrollment();
+
+    /**
+     * Roster Object for GUI project
+     */
     private Roster roster = new Roster();
 
+    /**
+     * Turns on the CT, NY toggle buttons when Tri-State button has been selected.
+     */
     @FXML
     public void switchToTriState(){
         RadioButton CTButton = (RadioButton) ResidentGroupTertiary.getToggles().get(0);
@@ -177,6 +211,9 @@ public class TuitionManagerController {
         switchOffInternational();
     }
 
+    /**
+     * Turns off CT, NY toggle group and turns on isStudyAbroad button
+     */
     @FXML
     public void switchToInternational(){
         switchOffTriState();
@@ -184,6 +221,9 @@ public class TuitionManagerController {
         abroadButton.setDisable(false);
     }
 
+    /**
+     * Turns off isStudyAbroad button when international button is deselected
+     */
     @FXML
     public void switchOffInternational(){
         RadioButton abroadButton = (RadioButton) ResidentGroupQuad.getToggles().get(0);
@@ -191,6 +231,9 @@ public class TuitionManagerController {
         abroadButton.setSelected(false);
     }
 
+    /**
+     * Turns off CT, NY toggle group
+     */
     @FXML
     public void switchOffTriState(){
         RadioButton CTButton = (RadioButton) ResidentGroupTertiary.getToggles().get(0);
@@ -202,6 +245,9 @@ public class TuitionManagerController {
         switchOffInternational();
     }
 
+    /**
+     * Turns off all other buttons and deselected all other buttons except the Resident, NonResident toggle group
+     */
     @FXML
     public void switchToResident(){
         RadioButton triStateButton = (RadioButton) ResidentGroupSecondary.getToggles().get(0);
@@ -222,6 +268,9 @@ public class TuitionManagerController {
         switchOffInternational();
     }
 
+    /**
+     * Turns on the TriState, International, and Neither toggle group
+     */
     @FXML
     public void switchToNonResident(){
         RadioButton triStateButton = (RadioButton) ResidentGroupSecondary.getToggles().get(0);
@@ -233,6 +282,10 @@ public class TuitionManagerController {
         neitherButton.setSelected(true);
     }
 
+    /**
+     * Adds student to roster when add button on roster page has been clicked.
+     * Takes in data from text fields on first tab
+     */
     @FXML
     public void onAddButtonClick(){
         String fName = firstNameTextField.getText();
@@ -246,18 +299,14 @@ public class TuitionManagerController {
             return;
         }
         String date = "Data Missing: No date selected!";
-        try{
-            date = getDateFromDatePicker(dateField);
-        }catch (Exception e){
+        try{ date = getDateFromDatePicker(dateField); }catch (Exception e){
             firstTabText.setText(date);
             return;
         }
         String major = getTextFromToggleGroup(majorGroup);
         String creditsCompletedString = creditsTextField.getText();
         int creditsCompleted = 0;
-        try{
-            creditsCompleted = Integer.parseInt(creditsCompletedString);
-        }catch (Exception e){
+        try{ creditsCompleted = Integer.parseInt(creditsCompletedString); }catch (Exception e){
             if(creditsCompletedString.equals("")){
                 firstTabText.setText("Data Missing: Credits Completed is Empty!");
             }else{
@@ -317,6 +366,10 @@ public class TuitionManagerController {
         clearFields();
     }
 
+    /**
+     * Deletes student from roster when add button on roster page has been clicked.
+     * Takes in data from text fields on first tab
+     */
     @FXML
     public void onDeleteButtonClick(){
         try{
@@ -351,6 +404,10 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Changes students Major to a given major when change button on roster page has been clicked.
+     * Takes in data from text fields on first tab
+     */
     @FXML
     public void onChangeButtonClick(){
         String fName = firstNameTextField.getText();
@@ -383,6 +440,10 @@ public class TuitionManagerController {
         clearFields();
     }
 
+    /**
+     * Loads students into the roster from data given in a text file.
+     * Takes in data from file name text field on first tab
+     */
     @FXML
     public void onLoadFileButtonClick(){
         String filename = textFileTextField.getText();
@@ -394,6 +455,11 @@ public class TuitionManagerController {
         clearFields();
     }
 
+    /**
+     * Adds EnrollStudent object to enrollment when enroll button on enroll page has been clicked.
+     * First checks to see if the student is in the roster.
+     * Takes data from text fields in enroll tab.
+     */
     @FXML
     public void onEnrollButtonClick(){
         String fName = EfirstNameBox.getText();
@@ -432,6 +498,11 @@ public class TuitionManagerController {
         clearEnrollmentFields();
     }
 
+    /**
+     * Drops EnrollStudent object from enrollment when enroll button on enroll page has been clicked.
+     * First checks to see if the student is in the enrollment.
+     * Takes data from text fields in enroll tab.
+     */
     @FXML
     public void onDropButtonClick(){
         String fName = EfirstNameBox.getText();
@@ -457,6 +528,11 @@ public class TuitionManagerController {
         clearEnrollmentFields();
     }
 
+    /**
+     * Method to handle event that scholarship update button is clicked on scholarship tab.
+     * Takes in data from text fields on scholarship tab.
+     * Adds scholarship to resident objects (Checks to see if student object is a resident)
+     */
     @FXML
     public void onUpdateScholarshipButtonClick(){
         String fName = SfirstName.getText();
@@ -492,9 +568,12 @@ public class TuitionManagerController {
         EnrollStudent enrollStudent = new EnrollStudent(profile,0);
         Resident resident = new Resident(profile,Major.CS,0);
         processScholarship(scholarship,enrollStudent,resident);
-        clearFieldsScholarship();
     }
 
+    /**
+     * Prints roster sorted by Profile, and displays it in console
+     * Event handler for (Roster --> Print By Profile) button
+     */
     @FXML
     public void onNormalPrintButtonClick(){
         try{
@@ -506,6 +585,10 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Prints roster sorted by School and Major, and displays it in console
+     * Event handler for (Roster --> Print By School And Major) button
+     */
     @FXML
     public void onMajorPrintButtonClick(){
         try{
@@ -517,6 +600,10 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Prints roster sorted by Standing, and displays it in console
+     * Event handler for (Roster --> Print By Standing) button
+     */
     @FXML
     public void onStandingPrintButtonClick(){
         try{
@@ -528,6 +615,11 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Event handler function to print student currently in the roster,
+     * that all attend RBS (Rutgers business school)
+     * Displays output in console on print tab.
+     */
     @FXML
     public void onRBSClick(){
         if(roster.isEmpty()){
@@ -545,6 +637,11 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Event handler function to print student currently in the roster,
+     * that all attend SOE (School of Engineering)
+     * Displays output in console on print tab.
+     */
     @FXML
     public void onSOEClick(){
         if(roster.isEmpty()){
@@ -562,6 +659,11 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Event handler function to print student currently in the roster,
+     * that all attend SAS (School of Ars and Sciences)
+     * Displays output in console on print tab.
+     */
     @FXML
     public void onSASCLick(){
         if(roster.isEmpty()){
@@ -579,6 +681,11 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Event handler function to print student currently in the roster,
+     * that all attend SC&I (School of Communication and Information)
+     * Displays output in console on print tab.
+     */
     @FXML
     public void onSCIClick(){
         if(roster.isEmpty()){
@@ -596,6 +703,10 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Event Handler to display enrollment in console.
+     * Event triggers when (Enrollment + Print Enrolled Student) button is clicked
+     */
     @FXML
     public void onEnrollmentPrintClick(){
         try{
@@ -611,6 +722,10 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Event Handler to display Tuition Due for student enrolled this semester, in the console.
+     * Event triggers when (Enrollment + Print Tuition Dues) button is clicked
+     */
     @FXML
     public void onTuitionDueClick(){
         try{
@@ -626,6 +741,11 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Event Handler to run semester end functions, and display the results in the console.
+     * Event triggers when (Enrollment + Semester End) button is clicked
+     * The program does not terminate after this. Instead, enrollment is cleared and a new semester may begin.
+     */
     @FXML
     public void onSemesterEndClick(){
         try{
@@ -657,6 +777,9 @@ public class TuitionManagerController {
         fourthTabText.setText(output);
     }
 
+    /**
+     * Clears text fields in scholarship tab after submission
+     */
     private void clearFieldsScholarship(){
         SfirstName.setText("");
         SlastName.setText("");
@@ -677,6 +800,7 @@ public class TuitionManagerController {
             String type = temp.getType();
             if(!type.equals("(Resident)")){
                 thirdTabText.setText(enrollStudent.getProfile()+" "+type+" is not eligible for the scholarship.");
+                clearFieldsScholarship();
                 return;
             }
             try{ student.isResident(); }catch(Exception e){}
@@ -686,14 +810,16 @@ public class TuitionManagerController {
             }
             if(enrollStudent.getCreditsEnrolled()<12){
                 thirdTabText.setText(enrollStudent.getProfile()+" part time student is not eligible for the scholarship.");
+                clearFieldsScholarship();
                 return;
             }
             Resident ourStudent = (Resident) temp;
             ourStudent.setScholarship(scholarship);
             thirdTabText.setText(enrollStudent.getProfile()+": scholarship amount updated.");
-
+            clearFieldsScholarship();
         }else{
             thirdTabText.setText(enrollStudentOriginal.getProfile()+" is not in the roster.");
+            clearFieldsScholarship();
         }
     }
 
@@ -735,6 +861,11 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Change the major of a student object
+     * @param student Student object that we want to edit
+     * @param newMajor the major object that we want to switch too in our student.
+     */
     private void processChange(Student student, Major newMajor){
         boolean changed = roster.change(student,newMajor);
         if(changed){
@@ -744,6 +875,12 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Removes a student from the given roster, if the student is present in the roster.
+     * First checks to see if roster contains the student.
+     * @param student Student object that we want to remove
+     * @param roster Roster that we want to remove the student from
+     */
     private void processRemove(Student student, Roster roster){
         if(roster.isEmpty()){
             firstTabText.setText("No Students to remove in roster.");
@@ -757,6 +894,11 @@ public class TuitionManagerController {
         firstTabText.setText(student.getProfile() + " is not in the roster.");
     }
 
+    /**
+     * Method to check a students validity before adding to the roster.
+     * Process method for adding to roster.
+     * @param student Student object we want to add to the roster.
+     */
     private void processAdd(Student student){
         if(roster.contains(student)){
             firstTabText.setText(student.getProfile()+" is already in the roster.");
@@ -766,6 +908,9 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Clear fields on the roster tab after submission
+     */
     private void clearFields(){
         firstNameTextField.setText("");
         lastNameTextField.setText("");
@@ -774,6 +919,9 @@ public class TuitionManagerController {
         textFileTextField.setText("");
     }
 
+    /**
+     * Clear fields on the enroll tab after submission
+     */
     private void clearEnrollmentFields(){
         EfirstNameBox.setText("");
         ElastNameBox.setText("");
@@ -781,12 +929,22 @@ public class TuitionManagerController {
         creditsEnrolledBox.setText("");
     }
 
+    /**
+     * Method to get String date in format (MM/DD/YYYY) from Calendar interface
+     * @param dateField FXML calendar interface from GUI
+     * @return String date of format MM/DD/YYYY
+     */
     private String getDateFromDatePicker(DatePicker dateField){
         LocalDate date = dateField.getValue();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
 
+    /**
+     * Method to get the text value of a toggle button.
+     * @param toggleGroup The group of buttons that are active currently in single category (Ex: Resident, NonResident)
+     * @return String text value of button (Ex: Resident button selected --> "Resident")
+     */
     private String getTextFromToggleGroup(ToggleGroup toggleGroup){
         try{
             RadioButton radioButton = (RadioButton) toggleGroup.getSelectedToggle();
@@ -796,6 +954,12 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Method to get a major object form a string
+     * @param major String major
+     * @return A major object that corresponds to the String provided
+     *         (Ex: "CS" --> Major.CS)
+     */
     private Major grabMajor(String major){
         switch(major){
             case "BAIT": return Major.BAIT;
