@@ -491,7 +491,7 @@ public class TuitionManagerController {
             creditsEnrolled = Integer.parseInt(creditsEnrolledString);
         }catch (Exception e){
             if(creditsEnrolledString.equals("")){
-                secondTabText.setText("Data Missing: Credits Completed is Empty!");
+                secondTabText.setText("Data Missing: Credits to Enroll is Empty!");
             }else{
                 secondTabText.setText("Credits Enrolled is not an integer");
             }
